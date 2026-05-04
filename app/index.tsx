@@ -20,7 +20,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/icon.png")}
+        source={require("../assets/app_logo.png")}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -29,6 +29,6 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#2563EB", alignItems: "center", justifyContent: "center" },
+  container: { flex: 1, backgroundColor: "#FFFFFF", alignItems: "center", justifyContent: "center" },
   logo:      { width: 140, height: 140 },
 });

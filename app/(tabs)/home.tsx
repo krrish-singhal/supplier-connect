@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, RefreshControl, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -66,9 +66,12 @@ export default function HomeScreen() {
         {/* Header */}
         <View className="bg-white px-5 pt-3 pb-4 border-b border-slate-100">
           <View className="flex-row items-center justify-between mb-3.5">
-            <View>
-              <Text className="text-sm text-slate-500">{getGreeting()}</Text>
-              <Text className="text-xl font-bold text-slate-900">{user?.name || 'Guest'} 👋</Text>
+            <View className="flex-row items-center gap-3">
+              <Image source={require('../../assets/app_logo.png')} style={{ width: 38, height: 38, borderRadius: 10 }} />
+              <View>
+                <Text className="text-sm text-slate-500">{getGreeting()}</Text>
+                <Text className="text-xl font-bold text-slate-900">{user?.name || 'Guest'} 👋</Text>
+              </View>
             </View>
             <TouchableOpacity className="w-10 h-10 rounded-full bg-slate-100 items-center justify-center">
               <Ionicons name="notifications-outline" size={22} color="#475569" />
