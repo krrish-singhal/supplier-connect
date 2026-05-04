@@ -41,6 +41,7 @@ eas build:configure
 ```
 
 When prompted:
+
 - Select **Android**
 - Choose **APK** (not AAB) so the client can install directly without Play Store
 
@@ -136,17 +137,17 @@ Send this file to your client.
 
 The app is fully demo-ready without any backend server:
 
-| Step | What to do |
-|------|-----------|
-| **Login** | Enter any 10-digit mobile number → tap **Continue** |
-| **OTP** | Enter **`123456`** → app auto-verifies |
-| **Onboarding** | Fill name + business name → choose region + categories → **Get Started** |
-| **Home** | Loads with real mock data — suppliers, opportunities, stats |
-| **Suppliers** | Browse, search, filter by region/category |
-| **Supplier Detail** | Tap any supplier → view profile, ratings, contact info |
-| **Opportunities** | Browse open opportunities with budget range |
-| **Opportunity Detail** | Tap any opportunity → view details, apply |
-| **Profile** | Shows user info, saved suppliers, inquiry history |
+| Step                   | What to do                                                               |
+| ---------------------- | ------------------------------------------------------------------------ |
+| **Login**              | Enter any 10-digit mobile number → tap **Continue**                      |
+| **OTP**                | Enter **`123456`** → app auto-verifies                                   |
+| **Onboarding**         | Fill name + business name → choose region + categories → **Get Started** |
+| **Home**               | Loads with real mock data — suppliers, opportunities, stats              |
+| **Suppliers**          | Browse, search, filter by region/category                                |
+| **Supplier Detail**    | Tap any supplier → view profile, ratings, contact info                   |
+| **Opportunities**      | Browse open opportunities with budget range                              |
+| **Opportunity Detail** | Tap any opportunity → view details, apply                                |
+| **Profile**            | Shows user info, saved suppliers, inquiry history                        |
 
 > All data is local mock data. No internet required for the demo.
 

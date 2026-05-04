@@ -59,19 +59,32 @@ export default function ProfileScreen() {
   const [showSaved, setShowSaved] = useState(false);
   const [showInquiries, setShowInquiries] = useState(false);
   const [showApplications, setShowApplications] = useState(false);
-  const [apiSavedSuppliers, setApiSavedSuppliers] = useState<typeof mockSuppliers | null>(null);
-  const [apiInquiriesCount, setApiInquiriesCount] = useState<number | null>(null);
+  const [apiSavedSuppliers, setApiSavedSuppliers] = useState<
+    typeof mockSuppliers | null
+  >(null);
+  const [apiInquiriesCount, setApiInquiriesCount] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
-    api.get<{ saved: typeof mockSuppliers }>('/api/saved')
-      .then((r) => { if (r.saved) setApiSavedSuppliers(r.saved); })
+    api
+      .get<{ saved: typeof mockSuppliers }>("/api/saved")
+      .then((r) => {
+        if (r.saved) setApiSavedSuppliers(r.saved);
+      })
       .catch(() => {});
-    api.get<{ inquiries: unknown[] }>('/api/inquiries/mine')
-      .then((r) => { if (Array.isArray(r.inquiries)) setApiInquiriesCount(r.inquiries.length); })
+    api
+      .get<{ inquiries: unknown[] }>("/api/inquiries/mine")
+      .then((r) => {
+        if (Array.isArray(r.inquiries))
+          setApiInquiriesCount(r.inquiries.length);
+      })
       .catch(() => {});
   }, []);
 
-  const savedSuppliers = apiSavedSuppliers ?? mockSuppliers.filter((s) => savedSupplierIds.includes(s.id));
+  const savedSuppliers =
+    apiSavedSuppliers ??
+    mockSuppliers.filter((s) => savedSupplierIds.includes(s.id));
   const inquiriesCount = apiInquiriesCount ?? inquiries.length;
 
   const handleLogout = () => {

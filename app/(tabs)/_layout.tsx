@@ -1,7 +1,7 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS } from '@/src/constants';
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { COLORS } from "@/src/constants";
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
@@ -22,14 +22,14 @@ export default function TabsLayout() {
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          fontWeight: '500',
+          fontWeight: "500",
         },
       }}
     >
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -38,7 +38,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="suppliers"
         options={{
-          title: 'Suppliers',
+          title: "Suppliers",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="business" size={size} color={color} />
           ),
@@ -47,7 +47,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="opportunities"
         options={{
-          title: 'Opportunities',
+          title: "Opportunities",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="briefcase" size={size} color={color} />
           ),
@@ -56,7 +56,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size} color={color} />
           ),

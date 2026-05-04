@@ -40,21 +40,29 @@ export default function SuppliersScreen() {
   const fetchSuppliers = useCallback(async () => {
     try {
       const regionMap: Record<string, string> = {
-        'North India': 'North', 'South India': 'South',
-        'West India': 'West', 'East India': 'East',
+        "North India": "North",
+        "South India": "South",
+        "West India": "West",
+        "East India": "East",
       };
       const params: Record<string, string> = {};
-      if (supplierFilters.region !== 'all') {
-        params.region = regionMap[supplierFilters.region] || supplierFilters.region;
+      if (supplierFilters.region !== "all") {
+        params.region =
+          regionMap[supplierFilters.region] || supplierFilters.region;
       }
-      const res = await api.get<{ suppliers: Supplier[] }>('/api/suppliers', params);
+      const res = await api.get<{ suppliers: Supplier[] }>(
+        "/api/suppliers",
+        params,
+      );
       if (res.suppliers?.length) setAllSuppliers(res.suppliers);
     } catch {
       // fallback to mockData
     }
   }, [supplierFilters.region]);
 
-  useEffect(() => { fetchSuppliers(); }, [fetchSuppliers]);
+  useEffect(() => {
+    fetchSuppliers();
+  }, [fetchSuppliers]);
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);

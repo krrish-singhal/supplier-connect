@@ -2,15 +2,15 @@
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | React Native (Expo SDK 54) |
-| Router | Expo Router v6 (file-based) |
-| Language | TypeScript |
-| State Management | Zustand + AsyncStorage |
-| Styling | className-based (classNameShim runtime shim) |
-| JS Engine | Hermes |
-| Backend (stub) | Express.js + Firebase Admin |
+| Layer            | Technology                                   |
+| ---------------- | -------------------------------------------- |
+| Framework        | React Native (Expo SDK 54)                   |
+| Router           | Expo Router v6 (file-based)                  |
+| Language         | TypeScript                                   |
+| State Management | Zustand + AsyncStorage                       |
+| Styling          | className-based (classNameShim runtime shim) |
+| JS Engine        | Hermes                                       |
+| Backend (stub)   | Express.js + Firebase Admin                  |
 
 ---
 
@@ -117,18 +117,18 @@ SupplierConnect/
 
 ## Route Map
 
-| URL / Route | Screen | Auth Required |
-|---|---|---|
-| `/` | Splash + redirect | No |
-| `/(auth)/login` | Phone number entry | No |
-| `/(auth)/verify` | OTP verification | No |
-| `/(auth)/onboarding` | Profile setup (3 steps) | No |
-| `/(tabs)/home` | Home dashboard | Yes |
-| `/(tabs)/suppliers` | Supplier list | Yes |
-| `/(tabs)/opportunities` | Opportunities feed | Yes |
-| `/(tabs)/profile` | User profile + activity | Yes |
-| `/suppliers/[id]` | Supplier detail | Yes |
-| `/opportunities/[id]` | Opportunity detail | Yes |
+| URL / Route             | Screen                  | Auth Required |
+| ----------------------- | ----------------------- | ------------- |
+| `/`                     | Splash + redirect       | No            |
+| `/(auth)/login`         | Phone number entry      | No            |
+| `/(auth)/verify`        | OTP verification        | No            |
+| `/(auth)/onboarding`    | Profile setup (3 steps) | No            |
+| `/(tabs)/home`          | Home dashboard          | Yes           |
+| `/(tabs)/suppliers`     | Supplier list           | Yes           |
+| `/(tabs)/opportunities` | Opportunities feed      | Yes           |
+| `/(tabs)/profile`       | User profile + activity | Yes           |
+| `/suppliers/[id]`       | Supplier detail         | Yes           |
+| `/opportunities/[id]`   | Opportunity detail      | Yes           |
 
 ---
 
@@ -244,11 +244,11 @@ Shared Components
 
 ## Key Configuration Files
 
-| File | Purpose |
-|---|---|
-| `app.json` | Expo app name (`SupplierConnect`), bundle ID, icons, scheme |
-| `babel.config.js` | `babel-preset-expo` only — **do not add nativewind/babel** |
-| `metro.config.js` | Metro bundler with NativeWind CSS interop (passive) |
-| `tsconfig.json` | Path alias `@/*` → project root |
+| File                 | Purpose                                                     |
+| -------------------- | ----------------------------------------------------------- |
+| `app.json`           | Expo app name (`SupplierConnect`), bundle ID, icons, scheme |
+| `babel.config.js`    | `babel-preset-expo` only — **do not add nativewind/babel**  |
+| `metro.config.js`    | Metro bundler with NativeWind CSS interop (passive)         |
+| `tsconfig.json`      | Path alias `@/*` → project root                             |
 | `tailwind.config.js` | Tailwind content paths (reference for classNameShim tokens) |
-| `.env.example` | `FIREBASE_API_KEY`, `FIREBASE_PROJECT_ID`, etc. |
+| `.env.example`       | `FIREBASE_API_KEY`, `FIREBASE_PROJECT_ID`, etc.             |

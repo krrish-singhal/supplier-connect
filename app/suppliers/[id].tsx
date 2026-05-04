@@ -25,8 +25,11 @@ import type { Supplier } from "@/src/types";
 
 export default function SupplierDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const [supplier, setSupplier] = useState<Supplier | null | undefined>(undefined);
-  const { isSaved, saveSupplier, unsaveSupplier, sendInquiry } = useUserDataStore();
+  const [supplier, setSupplier] = useState<Supplier | null | undefined>(
+    undefined,
+  );
+  const { isSaved, saveSupplier, unsaveSupplier, sendInquiry } =
+    useUserDataStore();
   const user = useAuthStore((s) => s.user);
   const [showInquiry, setShowInquiry] = useState(false);
   const [message, setMessage] = useState("");
@@ -34,14 +37,18 @@ export default function SupplierDetailScreen() {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    api.get<{ supplier: Supplier }>(`/api/suppliers/${id}`)
+    api
+      .get<{ supplier: Supplier }>(`/api/suppliers/${id}`)
       .then((r) => setSupplier(r.supplier ?? null))
       .catch(() => setSupplier(getSupplierById(id) ?? null));
   }, [id]);
 
   if (supplier === undefined) {
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center" edges={["top", "bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-white items-center justify-center"
+        edges={["top", "bottom"]}
+      >
         <ActivityIndicator color="#3B82F6" />
       </SafeAreaView>
     );
@@ -49,7 +56,10 @@ export default function SupplierDetailScreen() {
 
   if (!supplier) {
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center" edges={["top", "bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-white items-center justify-center"
+        edges={["top", "bottom"]}
+      >
         <Text className="text-base text-slate-400">Supplier not found</Text>
       </SafeAreaView>
     );

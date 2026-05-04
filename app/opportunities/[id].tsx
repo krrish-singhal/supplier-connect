@@ -54,14 +54,18 @@ export default function OpportunityDetailScreen() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    api.get<{ opportunity: Opportunity }>(`/api/opportunities/${id}`)
+    api
+      .get<{ opportunity: Opportunity }>(`/api/opportunities/${id}`)
       .then((r) => setOpp(r.opportunity ?? null))
       .catch(() => setOpp(getOpportunityById(id) ?? null));
   }, [id]);
 
   if (opp === undefined) {
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center" edges={["top", "bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-white items-center justify-center"
+        edges={["top", "bottom"]}
+      >
         <ActivityIndicator color="#3B82F6" />
       </SafeAreaView>
     );
@@ -69,7 +73,10 @@ export default function OpportunityDetailScreen() {
 
   if (!opp) {
     return (
-      <SafeAreaView className="flex-1 bg-white items-center justify-center" edges={["top", "bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-white items-center justify-center"
+        edges={["top", "bottom"]}
+      >
         <Text className="text-base text-slate-400">Opportunity not found</Text>
       </SafeAreaView>
     );

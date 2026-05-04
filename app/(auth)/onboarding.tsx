@@ -87,13 +87,20 @@ export default function OnboardingScreen() {
   const stepNumber = { profile: 1, region: 2, categories: 3 }[step];
 
   return (
-    <SafeAreaView style={[s.safe, { minHeight: height }]} edges={["top", "bottom"]}>
+    <SafeAreaView
+      style={[s.safe, { minHeight: height }]}
+      edges={["top", "bottom"]}
+    >
       <View style={s.root}>
         {/* Header */}
         <View style={s.header}>
           <View style={s.headerRow}>
             {step !== "profile" ? (
-              <TouchableOpacity style={s.backBtn} onPress={handleBack} activeOpacity={0.7}>
+              <TouchableOpacity
+                style={s.backBtn}
+                onPress={handleBack}
+                activeOpacity={0.7}
+              >
                 <Ionicons name="arrow-back" size={20} color="#334155" />
               </TouchableOpacity>
             ) : (
@@ -106,7 +113,10 @@ export default function OnboardingScreen() {
             {[1, 2, 3].map((n) => (
               <View
                 key={n}
-                style={[s.progressBar, n <= stepNumber ? s.progressActive : s.progressInactive]}
+                style={[
+                  s.progressBar,
+                  n <= stepNumber ? s.progressActive : s.progressInactive,
+                ]}
               />
             ))}
           </View>
@@ -123,86 +133,115 @@ export default function OnboardingScreen() {
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
           >
-          {step === "profile" && (
-            <View style={s.stepContainer}>
-              <Text style={s.title}>Create Your Profile</Text>
-              <Text style={s.subtitle}>Tell us about yourself and your business</Text>
-              <View style={s.fieldGap}>
-                <Input
-                  label="Your Name"
-                  placeholder="Enter your full name"
-                  value={name}
-                  onChangeText={setName}
-                  autoCapitalize="words"
-                />
-                <Input
-                  label="Business Name"
-                  placeholder="Enter your company name"
-                  value={businessName}
-                  onChangeText={setBusinessName}
-                  autoCapitalize="words"
-                />
-                <Input
-                  label="Email (Optional)"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChangeText={setEmail}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                />
+            {step === "profile" && (
+              <View style={s.stepContainer}>
+                <Text style={s.title}>Create Your Profile</Text>
+                <Text style={s.subtitle}>
+                  Tell us about yourself and your business
+                </Text>
+                <View style={s.fieldGap}>
+                  <Input
+                    label="Your Name"
+                    placeholder="Enter your full name"
+                    value={name}
+                    onChangeText={setName}
+                    autoCapitalize="words"
+                  />
+                  <Input
+                    label="Business Name"
+                    placeholder="Enter your company name"
+                    value={businessName}
+                    onChangeText={setBusinessName}
+                    autoCapitalize="words"
+                  />
+                  <Input
+                    label="Email (Optional)"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                  />
+                </View>
               </View>
-            </View>
-          )}
+            )}
 
-          {step === "region" && (
-            <View style={s.stepContainer}>
-              <Text style={s.title}>Select Your Region</Text>
-              <Text style={s.subtitle}>Choose your primary business region in India</Text>
-              <View style={s.regionList}>
-                {REGIONS.map((region) => {
-                  const sel = selectedRegion === region;
-                  return (
-                    <TouchableOpacity
-                      key={region}
-                      onPress={() => setSelectedRegion(region)}
-                      activeOpacity={0.7}
-                      style={[s.regionItem, sel ? s.regionSelected : s.regionDefault]}
-                    >
-                      <Text style={[s.regionText, sel ? s.regionTextSel : s.regionTextDef]}>
-                        {region}
-                      </Text>
-                      {sel && <Ionicons name="checkmark-circle" size={24} color="#2563EB" />}
-                    </TouchableOpacity>
-                  );
-                })}
+            {step === "region" && (
+              <View style={s.stepContainer}>
+                <Text style={s.title}>Select Your Region</Text>
+                <Text style={s.subtitle}>
+                  Choose your primary business region in India
+                </Text>
+                <View style={s.regionList}>
+                  {REGIONS.map((region) => {
+                    const sel = selectedRegion === region;
+                    return (
+                      <TouchableOpacity
+                        key={region}
+                        onPress={() => setSelectedRegion(region)}
+                        activeOpacity={0.7}
+                        style={[
+                          s.regionItem,
+                          sel ? s.regionSelected : s.regionDefault,
+                        ]}
+                      >
+                        <Text
+                          style={[
+                            s.regionText,
+                            sel ? s.regionTextSel : s.regionTextDef,
+                          ]}
+                        >
+                          {region}
+                        </Text>
+                        {sel && (
+                          <Ionicons
+                            name="checkmark-circle"
+                            size={24}
+                            color="#2563EB"
+                          />
+                        )}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
               </View>
-            </View>
-          )}
+            )}
 
-          {step === "categories" && (
-            <View style={s.stepContainer}>
-              <Text style={s.title}>Select Categories</Text>
-              <Text style={s.subtitle}>Choose up to 5 categories you are interested in</Text>
-              <View style={s.catGrid}>
-                {CATEGORIES.map((cat) => {
-                  const sel = selectedCategories.includes(cat);
-                  const dis = !sel && selectedCategories.length >= 5;
-                  return (
-                    <TouchableOpacity
-                      key={cat}
-                      onPress={() => toggleCategory(cat)}
-                      disabled={dis}
-                      activeOpacity={0.7}
-                      style={[s.catChip, sel ? s.catSel : dis ? s.catDis : s.catDef]}
-                    >
-                      <Text style={[s.catText, sel ? s.catTextSel : s.catTextDef]}>{cat}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
+            {step === "categories" && (
+              <View style={s.stepContainer}>
+                <Text style={s.title}>Select Categories</Text>
+                <Text style={s.subtitle}>
+                  Choose up to 5 categories you are interested in
+                </Text>
+                <View style={s.catGrid}>
+                  {CATEGORIES.map((cat) => {
+                    const sel = selectedCategories.includes(cat);
+                    const dis = !sel && selectedCategories.length >= 5;
+                    return (
+                      <TouchableOpacity
+                        key={cat}
+                        onPress={() => toggleCategory(cat)}
+                        disabled={dis}
+                        activeOpacity={0.7}
+                        style={[
+                          s.catChip,
+                          sel ? s.catSel : dis ? s.catDis : s.catDef,
+                        ]}
+                      >
+                        <Text
+                          style={[s.catText, sel ? s.catTextSel : s.catTextDef]}
+                        >
+                          {cat}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+                <Text style={s.catCount}>
+                  {selectedCategories.length}/5 selected
+                </Text>
               </View>
-              <Text style={s.catCount}>{selectedCategories.length}/5 selected</Text>
-            </View>
-          )}
+            )}
           </ScrollView>
         </KeyboardAvoidingView>
 
@@ -222,39 +261,80 @@ export default function OnboardingScreen() {
 }
 
 const s = StyleSheet.create({
-  safe:             { flex: 1, backgroundColor: "#fff", position: "relative" },
-  root:             { flex: 1, position: "relative" },
-  content:          { flex: 1 },
-  header:           { paddingHorizontal: 24, paddingTop: 16, paddingBottom: 24 },
-  headerRow:        { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 20 },
-  backBtn:          { width: 40, height: 40, borderRadius: 20, backgroundColor: "#F1F5F9", alignItems: "center", justifyContent: "center" },
+  safe: { flex: 1, backgroundColor: "#fff", position: "relative" },
+  root: { flex: 1, position: "relative" },
+  content: { flex: 1 },
+  header: { paddingHorizontal: 24, paddingTop: 16, paddingBottom: 24 },
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#F1F5F9",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   backBtnPlaceholder: { width: 40 },
-  stepLabel:        { fontSize: 14, fontWeight: "500", color: "#64748B" },
-  progressRow:      { flexDirection: "row", gap: 8 },
-  progressBar:      { flex: 1, height: 4, borderRadius: 99 },
-  progressActive:   { backgroundColor: "#2563EB" },
+  stepLabel: { fontSize: 14, fontWeight: "500", color: "#64748B" },
+  progressRow: { flexDirection: "row", gap: 8 },
+  progressBar: { flex: 1, height: 4, borderRadius: 99 },
+  progressActive: { backgroundColor: "#2563EB" },
   progressInactive: { backgroundColor: "#E2E8F0" },
-  scroll:           { flex: 1 },
-  scrollContent:    { paddingHorizontal: 24, paddingBottom: 128 },
-  stepContainer:    { paddingTop: 8 },
-  title:            { fontSize: 26, fontWeight: "700", color: "#0F172A", marginBottom: 8 },
-  subtitle:         { fontSize: 16, color: "#64748B", marginBottom: 32, lineHeight: 22 },
-  fieldGap:         { gap: 20 },
-  regionList:       { gap: 12 },
-  regionItem:       { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 16, paddingVertical: 16, borderRadius: 16, borderWidth: 1 },
-  regionDefault:    { borderColor: "#E2E8F0", backgroundColor: "#fff" },
-  regionSelected:   { borderColor: "#3B82F6", backgroundColor: "#EFF6FF" },
-  regionText:       { fontSize: 16, fontWeight: "500" },
-  regionTextDef:    { color: "#334155" },
-  regionTextSel:    { color: "#1D4ED8" },
-  catGrid:          { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  catChip:          { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 12, borderWidth: 1 },
-  catDef:           { borderColor: "#E2E8F0", backgroundColor: "#fff" },
-  catSel:           { borderColor: "#3B82F6", backgroundColor: "#EFF6FF" },
-  catDis:           { borderColor: "#F1F5F9", backgroundColor: "#F8FAFC", opacity: 0.5 },
-  catText:          { fontSize: 14, fontWeight: "500" },
-  catTextDef:       { color: "#334155" },
-  catTextSel:       { color: "#1D4ED8" },
-  catCount:         { fontSize: 14, color: "#94A3B8", marginTop: 16 },
-  cta:              { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 24, paddingTop: 16, paddingBottom: 16, backgroundColor: "#fff", borderTopWidth: 1, borderTopColor: "#F1F5F9" },
+  scroll: { flex: 1 },
+  scrollContent: { paddingHorizontal: 24, paddingBottom: 128 },
+  stepContainer: { paddingTop: 8 },
+  title: { fontSize: 26, fontWeight: "700", color: "#0F172A", marginBottom: 8 },
+  subtitle: {
+    fontSize: 16,
+    color: "#64748B",
+    marginBottom: 32,
+    lineHeight: 22,
+  },
+  fieldGap: { gap: 20 },
+  regionList: { gap: 12 },
+  regionItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  regionDefault: { borderColor: "#E2E8F0", backgroundColor: "#fff" },
+  regionSelected: { borderColor: "#3B82F6", backgroundColor: "#EFF6FF" },
+  regionText: { fontSize: 16, fontWeight: "500" },
+  regionTextDef: { color: "#334155" },
+  regionTextSel: { color: "#1D4ED8" },
+  catGrid: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
+  catChip: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  catDef: { borderColor: "#E2E8F0", backgroundColor: "#fff" },
+  catSel: { borderColor: "#3B82F6", backgroundColor: "#EFF6FF" },
+  catDis: { borderColor: "#F1F5F9", backgroundColor: "#F8FAFC", opacity: 0.5 },
+  catText: { fontSize: 14, fontWeight: "500" },
+  catTextDef: { color: "#334155" },
+  catTextSel: { color: "#1D4ED8" },
+  catCount: { fontSize: 14, color: "#94A3B8", marginTop: 16 },
+  cta: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 16,
+    backgroundColor: "#fff",
+    borderTopWidth: 1,
+    borderTopColor: "#F1F5F9",
+  },
 });

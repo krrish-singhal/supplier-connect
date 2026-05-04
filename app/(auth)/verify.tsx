@@ -32,40 +32,46 @@ export default function VerifyScreen() {
     } else setCanResend(true);
   }, [resendTimer]);
 
-  const handleVerify = useCallback(async (code: string) => {
-    if (code.length !== 6 || verifyingRef.current) return;
-    verifyingRef.current = true;
-    setError("");
-    setLoading(true);
-    try {
-      if (__DEV__ || DEMO_MODE) {
-        // Demo mode: OTP is always 123456, no backend needed
-        if (code !== "123456") {
-          throw new Error("Demo mode: use OTP 123456");
+  const handleVerify = useCallback(
+    async (code: string) => {
+      if (code.length !== 6 || verifyingRef.current) return;
+      verifyingRef.current = true;
+      setError("");
+      setLoading(true);
+      try {
+        if (__DEV__ || DEMO_MODE) {
+          // Demo mode: OTP is always 123456, no backend needed
+          if (code !== "123456") {
+            throw new Error("Demo mode: use OTP 123456");
+          }
+          setToken("demo-token");
+          router.replace("/(auth)/onboarding");
+          return;
         }
-        setToken("demo-token");
-        router.replace("/(auth)/onboarding");
-        return;
-      }
 
-      const res = await api.post<{ token: string; isNewUser: boolean; user: unknown }>(
-        "/api/auth/verify-otp",
-        { mobile: phoneNumber, otp: code },
-      );
-      if (res.isNewUser) {
-        setToken(res.token);
-        router.replace("/(auth)/onboarding");
-      } else {
-        setUser(res.user as Parameters<typeof setUser>[0], res.token);
-        router.replace("/(tabs)/home");
+        const res = await api.post<{
+          token: string;
+          isNewUser: boolean;
+          user: unknown;
+        }>("/api/auth/verify-otp", { mobile: phoneNumber, otp: code });
+        if (res.isNewUser) {
+          setToken(res.token);
+          router.replace("/(auth)/onboarding");
+        } else {
+          setUser(res.user as Parameters<typeof setUser>[0], res.token);
+          router.replace("/(tabs)/home");
+        }
+      } catch (err: unknown) {
+        verifyingRef.current = false;
+        setError(
+          err instanceof Error ? err.message : "OTP verification failed",
+        );
+      } finally {
+        setLoading(false);
       }
-    } catch (err: unknown) {
-      verifyingRef.current = false;
-      setError(err instanceof Error ? err.message : "OTP verification failed");
-    } finally {
-      setLoading(false);
-    }
-  }, [phoneNumber, setUser, setToken]);
+    },
+    [phoneNumber, setUser, setToken],
+  );
 
   const handleResend = async () => {
     if (!canResend) return;
